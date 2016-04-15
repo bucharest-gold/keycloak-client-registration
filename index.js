@@ -16,12 +16,23 @@ function Client(opts) {
           create: create,
           get: get
         };
-    
+  
+  /**
+   * Creates a new keycloak client
+   * @param [{object}] clientRepresentation - An object representing the client
+   * @param [{string}] clientRepresentation.clientId - The ID of the client to be created
+   * @returns A promise that will resolve with the client object
+   */  
   function create(clientRepresentation) {
     const rep = clientRepresentation || {};
     return doPost('default', rep);
   }
   
+  /**
+   * Gets an existing keycloak client
+   * @param {string} clientId - The ID of the client to get
+   * @returns A promise that will resolve with the client object
+   */
   function get(clientId) {
     return doGet('default', clientId);
   }

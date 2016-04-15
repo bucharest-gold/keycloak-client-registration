@@ -10,12 +10,15 @@
   "scripts": {
     "test": "tape test/*-test.js",
     "lint": "jshint *.js test/*.js",
-    "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js"
+    "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js",
+    "docs": "./node_modules/.bin/jsdoc -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
   },
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
   "license": "MIT",
   "devDependencies": {
+    "ink-docstrap": "^1.1.4",
     "istanbul": "^0.4.3",
+    "jsdoc": "^3.4.0",
     "jshint": "^2.9.1",
     "tape": "^4.5.1"
   }
