@@ -25,8 +25,12 @@ function getToken() {
         res.on('data', (chunk) => {
           data.push(chunk);
         }).on('end', () => {
-          token = JSON.parse(Buffer.concat(data).toString()).access_token;
-          resolve(token);
+          try {
+            token = JSON.parse(Buffer.concat(data).toString()).access_token;
+            resolve(token);
+          } catch(e) {
+            reject(e);
+          }
         });
       });
       req.on('error', (e) => {
