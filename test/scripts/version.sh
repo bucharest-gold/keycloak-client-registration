@@ -11,7 +11,7 @@ function waitForServer {
   C=50
   while [ $C -gt 0 ]
   do
-    grep "Undertow HTTP listener default listening" keycloak.log
+    grep "Keycloak ${VERSION} (WildFly Core 2.0.10.Final) started" keycloak.log
     FOUND=$?
     if [ $FOUND -eq 0 ]; then
       echo "Server started."
