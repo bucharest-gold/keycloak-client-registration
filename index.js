@@ -13,11 +13,13 @@ function Client(opts) {
         client = {
           endpoint: options.baseUrl + '/clients-registrations',
           accessToken: options.accessToken,
-          create: create
+          create: create,
+          get: get
         };
     
-  function create(clientRepresentation = {}) {
-    return doPost('default', clientRepresentation);
+  function create(clientRepresentation) {
+    const rep = clientRepresentation || {};
+    return doPost('default', rep);
   }
   
   function get(clientId) {
@@ -26,30 +28,13 @@ function Client(opts) {
   
   function doGet(path, clientId) {
     return new Promise((resolve, reject) => {
-      const options = url.parse([client.endpoint, ].join('/'));
+      const options = url.parse([client.endpoint, path].join('/'));
+      options.method = 'GET';
       options.headers = {
-        Authorization: "bearer " + client.accessToken,
-        'Content-Type': 'application/json',
-        'Content-Length': clientRepresentation.length
+        Authorization: "bearer " + client.accessToken
       };
       options.path = options.path + '/' + clientId;
-      const req = http.request(options, (res) => {
-        const body = [];
-        res.on('data', (chunk) => {
-          body.push(chunk);
-        }).on('end', () => {
-          const data = Buffer.concat(body).toString();
-          const result = JSON.parse(data);
-          result.headers = res.headers;
-          result.statusCode = res.statusCode;
-          result.statusMessage = res.statusMessage;
-          resolve(result);
-        }).on('error', (e) => {
-          reject(e);
-          console.error(e, e.stack);
-        });
-      });
-      req.write(clientRepresentation);
+      request(options, resolve, reject).end();
     });
   }
 
@@ -63,23 +48,31 @@ function Client(opts) {
         'Content-Type': 'application/json',
         'Content-Length': clientRepresentation.length
       };
-      const req = http.request(options, (res) => {
-        const body = [];
-        res.on('data', (chunk) => {
-          body.push(chunk);
-        }).on('end', () => {
-          const data = Buffer.concat(body).toString();
-          const result = JSON.parse(data);
-          result.headers = res.headers;
-          result.statusCode = res.statusCode;
-          result.statusMessage = res.statusMessage;
-          resolve(result);
-        }).on('error', (e) => {
-          reject(e);
-          console.error(e, e.stack);
-        });
-      });
+      const req = request(options, resolve, reject);
       req.write(clientRepresentation);
+      req.end();
+    });
+  }
+  
+  function request(options, resolve, reject) {
+    return http.request(options, (res) => {
+      if (res.statusCode === 404) {
+        return reject(res.statusMessage);
+      }
+      const body = [];
+      res.on('data', (chunk) => {
+        body.push(chunk);
+      }).on('end', () => {
+        const data = Buffer.concat(body).toString();
+        const result = JSON.parse(data);
+        result.headers = res.headers;
+        result.statusCode = res.statusCode;
+        result.statusMessage = res.statusMessage;
+        resolve(result);
+      }).on('error', (e) => {
+        reject(e);
+        console.error(e, e.stack);
+      });
     });
   }
   

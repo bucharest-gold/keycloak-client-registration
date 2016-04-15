@@ -34,6 +34,7 @@ function getToken() {
         });
       });
       req.on('error', (e) => {
+        console.error(e);
         reject(e);
       });
       req.write(querystring.stringify(options.data));

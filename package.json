@@ -8,9 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "node --harmony_default_parameters test/*-test.js",
+    "test": "tape test/*-test.js",
     "lint": "jshint *.js test/*.js",
-    "coverage": "node --harmony_default_parameters ./node_modules/.bin/istanbul cover tape -- test/*.js"
+    "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js"
   },
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
   "license": "MIT",
