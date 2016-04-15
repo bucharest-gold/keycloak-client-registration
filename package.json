@@ -2,6 +2,10 @@
   "name": "keycloak-client-registration",
   "version": "1.0.0",
   "description": "Dynamic client registration for Keycloak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bucharest-gold/keycloak-client-registration.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "node --harmony_default_parameters test/*-test.js",

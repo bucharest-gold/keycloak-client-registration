@@ -15,7 +15,7 @@ then
 fi
 
 # Start the server
-${KEYCLOAK}/bin/standalone.sh > keycloak.log 2>&1 &
+${KEYCLOAK}/bin/standalone.sh -Djava.net.preferIPv4Stack=true > keycloak.log 2>&1 &
 
 # Save the PID so we can kill it scriptually later
 PID=$!
