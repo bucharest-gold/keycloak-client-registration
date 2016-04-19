@@ -1,99 +1,60 @@
 /**
  * @module keycloak-client-registration
  */
-module.exports = exports = apiClient;
+module.exports = exports = {
+  create: create,
+  get: get
+};
 
 const http = require('http'),
   url = require('url');
 
 /**
- * The API client prototype for the Keycloak client registration API.
- * Provides functions to create, get, update and delete client registrations.
- * @see http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html  
- * @namespace Client
+ * Creates a new keycloak client
+ * @param {object} options - Request options
+ * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
+ * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
+ * @param {object} [clientRepresentation] - An object representing the client
+ * @param {string} [clientRepresentation.clientId] - The ID of the client to be created
+ * @returns {Promise} A promise that will resolve with the client object
  */
-const Client = {
-  /**
-   * The computed client registration API endpoint
-   * @instance
-   * @type string
-   */
-  endpoint: null,
-
-  /**
-   * The initial access token to use the client registration API.
-   * @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
-   * @instance
-   * @type string
-   */
-  accessToken: null,
-
-  /**
-   * Creates a new keycloak client
-   * @function
-   * @param {object} [clientRepresentation] - An object representing the client
-   * @param {string} [clientRepresentation.clientId] - The ID of the client to be created
-   * @returns {Promise} A promise that will resolve with the client object
-   * @instance
-   */
-  create: undefined,
-
-  /**
-   * Gets an existing keycloak client
-   * @function
-   * @param {string} clientId - The ID of the client to get
-   * @returns {Promise} A promise that will resolve with the client object
-   * @instance
-   */
-  get: undefined
-};
-
-/**
- * Creates {keycloak-client-registration~Client} instances that can create, get, 
- * modify and delete keycloak clients.
- * @param {Object} [options] - The authentication token
- * @returns {Object} The registration client
- */
-function apiClient (opts) {
-  const options = opts || {};
-
-  const client = Object.create(Client);
-
-  client.endpoint = options.baseUrl + '/clients-registrations';
-
-  client.accessToken = options.accessToken;
-
-  client.get = (clientId) => {
-    return doGet(client, 'default', clientId);
-  };
-
-  client.create = (clientRepresentation) => {
-    const rep = clientRepresentation || {};
-    return doPost(client, 'default', rep);
-  };
-
-  return Object.freeze(client);
+function create (opts, clientRepresentation) {
+  const rep = clientRepresentation || {};
+  return doPost(opts.endpoint, opts.accessToken, 'default', rep);
 }
 
-function doGet (client, path, clientId) {
+/**
+ * Gets an existing keycloak client
+ * @param {object} options - Request options
+ * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
+ * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
+ * @param {string} clientId - The ID of the client to get
+ * @returns {Promise} A promise that will resolve with the client object
+ * @instance
+ */
+function get (opts, clientId) {
+  return doGet(opts.endpoint, opts.accessToken, 'default', clientId);
+}
+
+function doGet (endpoint, accessToken, path, clientId) {
   return new Promise((resolve, reject) => {
-    const options = url.parse([client.endpoint, path].join('/'));
+    const options = url.parse([endpoint, path].join('/'));
     options.method = 'GET';
     options.headers = {
-      Authorization: 'bearer ' + client.accessToken
+      Authorization: 'bearer ' + accessToken
     };
     options.path = options.path + '/' + clientId;
     request(options, resolve, reject).end();
   });
 }
 
-function doPost (client, path, content) {
+function doPost (endpoint, accessToken, path, content) {
   return new Promise((resolve, reject) => {
     const clientRepresentation = JSON.stringify(content);
-    const options = url.parse([client.endpoint, path].join('/'));
+    const options = url.parse([endpoint, path].join('/'));
     options.method = 'POST';
     options.headers = {
-      Authorization: 'bearer ' + client.accessToken,
+      Authorization: 'bearer ' + accessToken,
       'Content-Type': 'application/json',
       'Content-Length': clientRepresentation.length
     };
