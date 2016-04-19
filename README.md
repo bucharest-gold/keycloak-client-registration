@@ -8,13 +8,14 @@ It is still a work in progress, and as yet unpublished.
 ## Usage
 
     const options = { 
-      baseUrl: 'http://localhost:8080/auth/realms/master',
+      endpoint: 'http://localhost:8080/auth/realms/master/clients-registrations',
       accessToken: accessToken 
     };
 
-    const Client = require('keycloak-client-registration');
-    const client = Client(options);
-    client.create().then((v) => {
+    const create = require('keycloak-client-registration').create,
+          get = require('keycloak-client-registration').get;
+    
+    create(options).then((v) => {
       t.equal(v.statusMessage, 'Created');
       t.equal(v.statusCode, 201);
       t.notEqual(v.clientId, undefined);
@@ -26,10 +27,10 @@ It is still a work in progress, and as yet unpublished.
 
 ## Development & Testing
 
-To run the tests, you'll need to have a keycloak server running. No worries!
-This is all taken care of for you. Just run `./test/scripts/start-server.sh`.
-If you don't already have a server downloaded, this script will download one
-for you, start it, initialize the admin user, and then restart.
+To run the tests, you'll need to have a keycloak server running. Just run 
+`./test/scripts/start-server.sh`. If you don't already have a server downloaded,
+this script will download one for you, start it, initialize the admin user, and
+then restart.
 
 Then just run the tests.
 
