@@ -9,3 +9,5 @@ script:
    - make ci
 after_script:
    - ./test/scripts/stop-server.sh
+notifications:
+  irc: "chat.freenode.net#bucharest-gold"
