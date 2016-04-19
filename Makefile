@@ -1,6 +1,7 @@
 ci:
 	npm run coverage
 	npm run docs
+	npm run prepublish
 
 coverage:
 	npm run coverage

@@ -11,6 +11,7 @@
     "test": "tape test/*-test.js",
     "lint": "jshint *.js test/*.js",
     "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js",
+    "prepublish": "./node_modules/nsp/bin/nsp check",
     "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
   },
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
@@ -20,6 +21,7 @@
     "istanbul": "^0.4.3",
     "jsdoc": "^3.4.0",
     "jshint": "^2.9.1",
+    "nsp": "^2.3.0",
     "tape": "^4.5.1"
   }
 }
