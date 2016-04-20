@@ -12,7 +12,7 @@ test: lint
 lint: node_modules
 	npm run lint
 
-cleanup:
+clean:
 	rm -rf node_modules coverage docs
 
 node_modules: package.json

@@ -1,12 +1,16 @@
+'use strict';
+
 /**
  * @module keycloak-client-registration
  */
 module.exports = exports = {
   create: create,
-  get: get
+  get: get,
+  remove: remove
 };
 
-const http = require('http'),
+const request = require('request'),
+  http = require('http'),
   url = require('url');
 
 /**
@@ -19,8 +23,7 @@ const http = require('http'),
  * @returns {Promise} A promise that will resolve with the client object
  */
 function create (opts, clientRepresentation) {
-  const rep = clientRepresentation || {};
-  return doPost(opts.endpoint, opts.accessToken, 'default', rep);
+  return doPost(defaults(opts.accessToken, opts.endpoint, 'default'), clientRepresentation || {});
 }
 
 /**
@@ -33,48 +36,60 @@ function create (opts, clientRepresentation) {
  * @instance
  */
 function get (opts, clientId) {
-  return doGet(opts.endpoint, opts.accessToken, 'default', clientId);
+  return doGet(defaults(opts.accessToken, opts.endpoint, 'default', clientId));
 }
 
-function doGet (endpoint, accessToken, path, clientId) {
+/**
+ * Removes an existing keycloak client
+ * @param {object} options - Request options
+ * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
+ * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
+ * @param {string} clientId - The ID of the client to get
+ * @returns {Promise} A promise that will resolve with the client object
+ * @instance
+ */
+function remove (opts, clientId) {
+  return doDelete(defaults(opts.accessToken, opts.endpoint, 'default', clientId));
+}
+
+function doDelete (options) {
   return new Promise((resolve, reject) => {
-    const options = url.parse([endpoint, path].join('/'));
-    options.method = 'GET';
-    options.headers = {
-      Authorization: 'bearer ' + accessToken
-    };
-    options.path = options.path + '/' + clientId;
-    request(options, resolve, reject).end();
+    options.method = 'DELETE';
+    request.delete(options)
+      .on('response', handleResponse(resolve, reject));
   });
 }
 
-function doPost (endpoint, accessToken, path, content) {
+function doGet (options) {
   return new Promise((resolve, reject) => {
-    const clientRepresentation = JSON.stringify(content);
-    const options = url.parse([endpoint, path].join('/'));
-    options.method = 'POST';
-    options.headers = {
-      Authorization: 'bearer ' + accessToken,
-      'Content-Type': 'application/json',
-      'Content-Length': clientRepresentation.length
-    };
-    const req = request(options, resolve, reject);
-    req.write(clientRepresentation);
-    req.end();
+    request.get(options)
+      .on('response', handleResponse(resolve, reject));
   });
 }
 
-function request (options, resolve, reject) {
-  return http.request(options, (res) => {
-    if (res.statusCode === 404) {
-      return reject(res.statusMessage);
-    }
+function doPost (options, content) {
+  return new Promise((resolve, reject) => {
+    options.body = content;
+    request.post(options)
+      .on('response', handleResponse(resolve, reject));
+  });
+}
+
+function handleResponse(resolve, reject) {
+  return (res) => {
     const body = [];
     res.on('data', (chunk) => {
       body.push(chunk);
     }).on('end', () => {
-      const data = Buffer.concat(body).toString();
-      const result = JSON.parse(data);
+      if (res.statusCode === 404) {
+        return reject(res.statusMessage);
+      }
+      let result;
+      if (res.statusCode === 204) { // No Content
+        result = {};
+      } else {
+        result = JSON.parse(Buffer.concat(body).toString());
+      }
       result.headers = res.headers;
       result.statusCode = res.statusCode;
       result.statusMessage = res.statusMessage;
@@ -83,5 +98,17 @@ function request (options, resolve, reject) {
       reject(e);
       console.error(e, e.stack);
     });
-  });
+  };
+}
+
+function defaults (accessToken) {
+  const parts = Array.prototype.slice.call(arguments);
+  parts.shift(); // get rid of accessToken
+  return {
+      uri: parts.join('/'),
+      json: true,
+      auth: {
+        bearer: accessToken
+      }
+    };
 }

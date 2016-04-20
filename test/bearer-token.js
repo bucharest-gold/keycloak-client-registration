@@ -1,3 +1,5 @@
+'use strict';
+
 const http = require('http'),
       url = require('url'),
       querystring = require('querystring'),
