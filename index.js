@@ -6,7 +6,8 @@
 module.exports = exports = {
   create: create,
   get: get,
-  remove: remove
+  remove: remove,
+  update: update
 };
 
 const request = require('request'),
@@ -62,6 +63,26 @@ function remove (opts, clientId) {
   let options = defaults(opts.accessToken, opts.endpoint, 'default', clientId);
   return new Promise((resolve, reject) => {
     request.delete(options)
+      .on('response', handleResponse(resolve, reject));
+  });
+}
+
+/**
+ * Update an existing keycloak client. The client object provided must at a minimum
+ * contain a `clientId` property. All other attributes will be applied as an update.
+ * @param {object} options - Request options
+ * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
+ * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
+ * @param {object} client - The client to update
+ * @param {string} client.clientId
+ * @returns {Promise} A promise that will resolve with the client object
+ * @instance
+ */
+function update (opts, client) {
+  let options = defaults(opts.accessToken, opts.endpoint, 'default', client.clientId);
+  options.body = client;
+  return new Promise((resolve, reject) => {
+    request.put(options)
       .on('response', handleResponse(resolve, reject));
   });
 }

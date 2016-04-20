@@ -12,10 +12,17 @@ getToken().then((accessToken) => {
     accessToken: accessToken 
   };
 
-  test.skip('Updating a client should return an object with the provided clientId', (t) => {
+  test('Updating a client should return an object with an updated client object', (t) => {
     create(options).then((v) => {
-      get(options, v.clientId).then((o) => {
-        t.equal(o.clientId, v.clientId);
+      const client = {
+        clientId: v.clientId,
+        attributes: {
+          color: 'green'
+        } 
+      };
+      update(options, client).then((o) => {
+        t.equal(o.clientId, client.clientId);
+        t.equal(o.attributes.color, client.attributes.color);
         t.end();
       }).catch((e) => {
         console.error(e.stack);
@@ -27,8 +34,11 @@ getToken().then((accessToken) => {
     });    
   });
   
-  test.skip('Getting a non-existent client should return what', (t) => {
-    get(options, 'tacos').then((o) => {
+  test('Updating a non-existent client should fail with Not Found', (t) => {
+    const client = {
+      clientId: 'tacos'
+    };
+    update(options, client).then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {
       t.equal(e, 'Not Found');
