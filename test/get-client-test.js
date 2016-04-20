@@ -26,7 +26,7 @@ getToken().then((accessToken) => {
     });    
   });
   
-  test('Getting a non-existent client should return what', (t) => {
+  test('Getting a non-existent client should fail', (t) => {
     get(options, 'tacos').then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {

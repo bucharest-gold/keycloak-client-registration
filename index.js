@@ -21,6 +21,7 @@ const request = require('request'),
  * @param {object} [clientRepresentation] - An object representing the client
  * @param {string} [clientRepresentation.clientId] - The ID of the client to be created
  * @returns {Promise} A promise that will resolve with the client object
+ * @instance
  */
 function create (opts, clientRepresentation) {
   let options = defaults(opts.accessToken, opts.endpoint, 'default');
@@ -71,7 +72,7 @@ function handleResponse(resolve, reject) {
     res.on('data', (chunk) => {
       body.push(chunk);
     }).on('end', () => {
-      if (res.statusCode === 404) {
+      if (res.statusCode >= 400) {
         return reject(res.statusMessage);
       }
       let result;

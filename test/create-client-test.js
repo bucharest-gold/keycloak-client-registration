@@ -18,6 +18,7 @@ getToken().then((accessToken) => {
       t.equal(typeof v.clientId, 'string');
       t.end();
     }).catch((e) => {
+      console.error(e.stack);
       t.fail(e);
     });
   });
@@ -30,6 +31,7 @@ getToken().then((accessToken) => {
       t.equal(v.clientId, rep.clientId);
       t.end();
     }).catch((e) => {
+      console.error(e.stack);
       t.fail(e);
     });
   });
