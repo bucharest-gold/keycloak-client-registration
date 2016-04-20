@@ -23,7 +23,12 @@ const request = require('request'),
  * @returns {Promise} A promise that will resolve with the client object
  */
 function create (opts, clientRepresentation) {
-  return doPost(defaults(opts.accessToken, opts.endpoint, 'default'), clientRepresentation || {});
+  let options = defaults(opts.accessToken, opts.endpoint, 'default');
+  options.body = clientRepresentation || {};
+  return new Promise((resolve, reject) => {
+    request.post(options)
+      .on('response', handleResponse(resolve, reject));
+  });
 }
 
 /**
@@ -36,7 +41,11 @@ function create (opts, clientRepresentation) {
  * @instance
  */
 function get (opts, clientId) {
-  return doGet(defaults(opts.accessToken, opts.endpoint, 'default', clientId));
+  let options = defaults(opts.accessToken, opts.endpoint, 'default', clientId); 
+  return new Promise((resolve, reject) => {
+    request.get(options)
+      .on('response', handleResponse(resolve, reject));
+  });
 }
 
 /**
@@ -49,28 +58,9 @@ function get (opts, clientId) {
  * @instance
  */
 function remove (opts, clientId) {
-  return doDelete(defaults(opts.accessToken, opts.endpoint, 'default', clientId));
-}
-
-function doDelete (options) {
+  let options = defaults(opts.accessToken, opts.endpoint, 'default', clientId);
   return new Promise((resolve, reject) => {
-    options.method = 'DELETE';
     request.delete(options)
-      .on('response', handleResponse(resolve, reject));
-  });
-}
-
-function doGet (options) {
-  return new Promise((resolve, reject) => {
-    request.get(options)
-      .on('response', handleResponse(resolve, reject));
-  });
-}
-
-function doPost (options, content) {
-  return new Promise((resolve, reject) => {
-    options.body = content;
-    request.post(options)
       .on('response', handleResponse(resolve, reject));
   });
 }
