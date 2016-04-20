@@ -5,6 +5,10 @@
 This package provides a Node.js client for the Keycloak [client registration API][1].
 It is still a work in progress, and as yet unpublished.
 
+## API Documentation
+
+http://bucharest-gold.github.io/keycloak-client-registration/
+
 ## Usage
 
     const options = { 
