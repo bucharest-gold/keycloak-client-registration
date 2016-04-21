@@ -5,14 +5,7 @@
 This package provides a Node.js client for the Keycloak [client registration API][1].
 It is still a work in progress, and as yet unpublished.
 
-## API Documentation
-
-http://bucharest-gold.github.io/keycloak-client-registration/
-
-If you have the github rights to do it, you can publish the API documentation by running
-`./build/publish-docs.sh`. This script will generate the documentation, then clone this
-repository into a temporary directory, checkout the `gh-pages` branch and update it with
-the newly generated documentation
+N.B. This module uses ES6 language features, and as such depends on Node.js version 5.x.
 
 ## Usage
 
@@ -33,6 +26,15 @@ the newly generated documentation
     }).catch((e) => {
       t.fail(e);
     });
+
+## API Documentation
+
+http://bucharest-gold.github.io/keycloak-client-registration/
+
+If you have the github rights to do it, you can publish the API documentation by running
+`./build/publish-docs.sh`. This script will generate the documentation, then clone this
+repository into a temporary directory, checkout the `gh-pages` branch and update it with
+the newly generated documentation
 
 ## Development & Testing
 
