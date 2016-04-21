@@ -4,10 +4,10 @@ language: node_js
 node_js:
   - "5"
 before_script:
-   - ./test/scripts/start-server.sh
+   - ./build/start-server.sh
 script:
    - make ci
 after_script:
-   - ./test/scripts/stop-server.sh
+   - ./build/stop-server.sh
 notifications:
   irc: "chat.freenode.net#brass-monkey"
