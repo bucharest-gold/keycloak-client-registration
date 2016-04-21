@@ -223,7 +223,11 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -249,7 +253,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations</td>
@@ -273,10 +289,69 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">The Initial access token @see <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473">http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473</a></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473">Initial access token</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>provider</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    default
+                
+                </td>
+            
+
+            <td class="description last">The Keycloak client registration provider to use. Valid values are:
+<br/>
+  - 'default': This is the default value and will use <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507">Keycloak client representations</a>
+<br/>
+  - 'openid-connect': Uses <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527">OpenID Connect Dynamic Client registration</a>
+</br>
+  - 'saml2-entity-descriptor': Creates clients using <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1537">SAML2 entity descriptors</a>
+     as the client representation.</td>
         </tr>
 
     
@@ -372,7 +447,7 @@
 
             
 
-            <td class="description last">The ID of the client to be created</td>
+            <td class="description last">The ID of the client to be created when using the 'default' provider</td>
         </tr>
 
     
@@ -545,7 +620,11 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -571,7 +650,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations</td>
@@ -595,10 +686,66 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The Initial access token @see <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473">http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>provider</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    default
+                
+                </td>
+            
+
+            <td class="description last">The Keycloak client registration provider to use. Valid values are:
+<br/>
+  - 'default': This is the default value and will use <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507">Keycloak client representations</a>
+<br/>
+  - 'openid-connect': Uses <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527">OpenID Connect Dynamic Client registration</a></td>
         </tr>
 
     
@@ -795,7 +942,11 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -821,7 +972,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations</td>
@@ -845,10 +1008,66 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The Initial access token @see <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473">http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>provider</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    default
+                
+                </td>
+            
+
+            <td class="description last">The Keycloak client registration provider to use. Valid values are:
+<br/>
+  - 'default': This is the default value and will use <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507">Keycloak client representations</a>
+<br/>
+  - 'openid-connect': Uses <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527">OpenID Connect Dynamic Client registration</a></td>
         </tr>
 
     
@@ -980,7 +1199,8 @@
     
     <div class="description">
         Update an existing keycloak client. The client object provided must at a minimum
-contain a `clientId` property. All other attributes will be applied as an update.
+contain a `clientId` property (or `client_id` in the case of OIDC provider). 
+All other attributes will be applied as an update.
     </div>
     
 
@@ -1046,7 +1266,11 @@ contain a `clientId` property. All other attributes will be applied as an update
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1072,7 +1296,19 @@ contain a `clientId` property. All other attributes will be applied as an update
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations</td>
@@ -1096,10 +1332,66 @@ contain a `clientId` property. All other attributes will be applied as an update
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The Initial access token @see <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473">http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>provider</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    default
+                
+                </td>
+            
+
+            <td class="description last">The Keycloak client registration provider to use. Valid values are:
+<br/>
+  - 'default': This is the default value and will use <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507">Keycloak client representations</a>
+<br/>
+  - 'openid-connect': Uses <a href="http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527">OpenID Connect Dynamic Client registration</a></td>
         </tr>
 
     
@@ -1316,7 +1608,7 @@ contain a `clientId` property. All other attributes will be applied as an update
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on 2016-04-21T10:57:49-04:00
+		on 2016-04-21T16:37:39-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
