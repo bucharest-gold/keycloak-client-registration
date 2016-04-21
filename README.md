@@ -1,6 +1,6 @@
 # Keycloak Client Registration
 
-[![Build Status](https://travis-ci.org/bucharest-gold/keycloak-admin-client.svg?branch=master)](https://travis-ci.org/bucharest-gold/keycloak-admin-client)
+[![Build Status](https://travis-ci.org/bucharest-gold/keycloak-client-registration.svg?branch=master)](https://travis-ci.org/bucharest-gold/keycloak-client-registration)
 
 This package provides a Node.js client for the Keycloak [client registration API][1].
 It is still a work in progress, and as yet unpublished.
