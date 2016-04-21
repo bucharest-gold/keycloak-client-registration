@@ -1,10 +1,6 @@
-ci:
+ci: lint
 	npm run coverage
 	npm run docs
-	npm run prepublish
-
-coverage:
-	npm run coverage
 
 test: lint
 	npm test
@@ -13,7 +9,7 @@ lint: node_modules
 	npm run lint
 
 clean:
-	rm -rf node_modules coverage docs
+	rm -rf node_modules coverage docs publish
 
 node_modules: package.json
 	npm install

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. test/scripts/version.sh
+. build/version.sh
 
 function waitForServer {
   # Give the server some time to start up. Look for a well-known

@@ -1,4 +1,5 @@
 keycloak*
 node_modules
+publish
 coverage
 docs

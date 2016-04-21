@@ -9,6 +9,11 @@ It is still a work in progress, and as yet unpublished.
 
 http://bucharest-gold.github.io/keycloak-client-registration/
 
+If you have the github rights to do it, you can publish the API documentation by running
+`./build/publish-docs.sh`. This script will generate the documentation, then clone this
+repository into a temporary directory, checkout the `gh-pages` branch and update it with
+the newly generated documentation
+
 ## Usage
 
     const options = { 
@@ -32,7 +37,7 @@ http://bucharest-gold.github.io/keycloak-client-registration/
 ## Development & Testing
 
 To run the tests, you'll need to have a keycloak server running. Just run 
-`./test/scripts/start-server.sh`. If you don't already have a server downloaded,
+`./build/start-server.sh`. If you don't already have a server downloaded,
 this script will download one for you, start it, initialize the admin user, and
 then restart.
 
@@ -40,6 +45,6 @@ Then just run the tests.
 
     make test
     
-To stop the server, run `./test/scripts/stop-server.sh`.
+To stop the server, run `./build/stop-server.sh`.
 
 [1]: http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html
