@@ -2,6 +2,14 @@
 
 PUBLISH_DIR="publish"
 
+while true; do
+    read -p "This will publish the API docs. Continue? [Y/n] " yn
+    case $yn in
+        [Nn]* ) echo "Aborting."; exit;;
+        * ) echo "Continuing."; break;;
+    esac
+done
+
 npm run docs
 git clone https://github.com/bucharest-gold/keycloak-client-registration.git $PUBLISH_DIR
 cd $PUBLISH_DIR
