@@ -1,6 +1,6 @@
 {
   "name": "keycloak-client-registration",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Dynamic client registration for Keycloak",
   "repository": {
     "type": "git",
@@ -10,12 +10,12 @@
   "scripts": {
     "test": "tape test/*-test.js | tap-spec",
     "lint": "jshint *.js test/*.js",
-    "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js | tap-spec",
     "prepublish": "./node_modules/nsp/bin/nsp check",
     "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
   },
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "ink-docstrap": "^1.1.4",
     "istanbul": "^0.4.3",

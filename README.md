@@ -5,13 +5,14 @@
 This package provides a Node.js client for the Keycloak [client registration API][1].
 It is still a work in progress, and as yet unpublished.
 
-N.B. This module uses ES6 language features, and as such depends on Node.js version 5.x.
+N.B. This module uses ES6 language features, and as such depends on Node.js version 5.x
+or higher.
 
 ## Usage
 
     const options = { 
       endpoint: 'http://localhost:8080/auth/realms/master/clients-registrations',
-      accessToken: accessToken 
+      accessToken: getAccessTokenFromSomehwere() 
     };
 
     const create = require('keycloak-client-registration').create,
