@@ -36,7 +36,7 @@ $KEYCLOAK/bin/standalone.sh -Djava.net.preferIPv4Stack=true > keycloak.log 2>&1 
 
 # Try to add an initial admin user, so we can test against
 # the server and not get automatically redirected.
-$KEYCLOAK/bin/add-user.sh -r master -u admin -p admin
+$KEYCLOAK/bin/add-user-keycloak.sh -r master -u admin -p admin
 waitForServer
 
 # We have to restart the server for the admin user to load?
