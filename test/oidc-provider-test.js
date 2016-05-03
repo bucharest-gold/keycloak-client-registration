@@ -8,10 +8,13 @@ getToken().then((accessToken) => {
   const options = {
     endpoint: 'http://localhost:8080/auth/realms/master/clients-registrations',
     accessToken: accessToken,
+    client_name: 'RegistrationAccessTokensTest',
+    client_uri: 'http://root',
+    redirect_uris: ['http://redirect'],
     provider: 'openid-connect'
   };
-  
-  test('Creating a client should return an object with a client_id', (t) => {
+
+  test('OIDC: Creating a client should return an object with a client_id', (t) => {
     registration.create(options).then((v) => {
       t.equal(v.statusMessage, 'Created');
       t.equal(v.statusCode, 201);
@@ -24,7 +27,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Getting a client should return an object with the provided client_id', (t) => {
+  test('OIDC: Getting a client should return an object with the provided client_id', (t) => {
     registration.create(options).then((v) => {
       registration.get(options, v.client_id).then((o) => {
         t.equal(o.client_id, v.client_id);
@@ -39,7 +42,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Getting a non-existent client should fail', (t) => {
+  test('OIDC: Getting a non-existent client should fail', (t) => {
     registration.get(options, 'tacos').then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {
@@ -47,16 +50,12 @@ getToken().then((accessToken) => {
       t.end();
     });
   });
-  
-  test.skip('Updating a client should return an object with an updated client object', (t) => {
+
+  test('OIDC: Updating a client should return an object with an updated client object', (t) => {
     registration.create(options).then((v) => {
-      const client = {
-        client_id: v.client_id,
-        client_name: 'A TEST CLIENT'
-      };
-      registration.update(options, client).then((o) => {
-        t.equal(o.client_id, client.client_id);
-        t.equal(o.client_name, client.client_name);
+      v.redirect_uris = ['http://new-redirect'];
+      registration.update(options, v).then((o) => {
+        t.deepEqual(o.redirect_uris, v.redirect_uris);
         t.end();
       }).catch((e) => {
         console.error(e.stack);
@@ -68,7 +67,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test.skip('Updating a non-existent client should fail with Not Found', (t) => {
+  test('OIDC: Updating a non-existent client should fail with Not Found', (t) => {
     const client = {
       client_id: 'tacos'
     };
@@ -80,7 +79,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Deleting a client should return a 204 status code if successful', (t) => {
+  test('OIDC: Deleting a client should return a 204 status code if successful', (t) => {
     registration.create(options).then((v) => {
       registration.remove(options, v.client_id).then((o) => {
         t.equal(o.statusCode, 204);
@@ -93,7 +92,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Deleting a non-existent client should fail with Not Found', (t) => {
+  test('OIDC: Deleting a non-existent client should fail with Not Found', (t) => {
     registration.remove(options, 'enchilada').then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {
@@ -101,7 +100,7 @@ getToken().then((accessToken) => {
       t.end();
     });
   });
-  
+
 }).catch((e) => {
   console.error('Are you sure a Keycloak server is running?');
   process.kill(process.pid);

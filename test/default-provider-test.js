@@ -10,7 +10,7 @@ getToken().then((accessToken) => {
     accessToken: accessToken
   };
 
-  test('Creating a client should return an object with a clientId', (t) => {
+  test('Default: Creating a client should return an object with a clientId', (t) => {
     registration.create(options).then((v) => {
       t.equal(v.statusMessage, 'Created');
       t.equal(v.statusCode, 201);
@@ -23,7 +23,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Creating a client should return an object with a provided clientId', (t) => {
+  test('Default: Creating a client should return an object with a provided clientId', (t) => {
     const rep = { clientId: Date.now().toString() };
     registration.create(options, rep).then((v) => {
       t.equal(v.statusMessage, 'Created');
@@ -36,7 +36,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Getting a client should return an object with the provided clientId', (t) => {
+  test('Default: Getting a client should return an object with the provided clientId', (t) => {
     registration.create(options).then((v) => {
       registration.get(options, v.clientId).then((o) => {
         t.equal(o.clientId, v.clientId);
@@ -51,7 +51,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Getting a non-existent client should fail', (t) => {
+  test('Default: Getting a non-existent client should fail', (t) => {
     registration.get(options, 'tacos').then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {
@@ -60,7 +60,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Updating a client should return an object with an updated client object', (t) => {
+  test('Default: Updating a client should return an object with an updated client object', (t) => {
     registration.create(options).then((v) => {
       const client = {
         clientId: v.clientId,
@@ -82,7 +82,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Updating a non-existent client should fail with Not Found', (t) => {
+  test('Default: Updating a non-existent client should fail with Not Found', (t) => {
     const client = {
       clientId: 'tacos'
     };
@@ -94,7 +94,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Deleting a client should return a 204 status code if successful', (t) => {
+  test('Default: Deleting a client should return a 204 status code if successful', (t) => {
     registration.create(options).then((v) => {
       registration.remove(options, v.clientId).then((o) => {
         t.equal(o.statusCode, 204);
@@ -107,7 +107,7 @@ getToken().then((accessToken) => {
     });
   });
 
-  test('Deleting a non-existent client should fail with Not Found', (t) => {
+  test('Default: Deleting a non-existent client should fail with Not Found', (t) => {
     registration.remove(options, 'enchilada').then((o) => {
       t.fail('Client should not be found');
     }).catch((e) => {

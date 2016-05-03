@@ -112,12 +112,23 @@ function remove (opts, clientId) {
  * @instance
  */
 function update (opts, client) {
-  let options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, client.clientId);
-  options.body = client;
+  let options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, client.clientId || client.client_id);
+  options.body = (options.provider === DEFAULT_PROVIDER) ? client : cleanseClient(client);
   return new Promise((resolve, reject) => {
     request.put(options)
       .on('response', handleResponse(resolve, reject));
   });
+}
+
+/**
+ * Removes fields from the client object that are explicitly not allowed via HTTP
+ * PUT for OIDC. @see {@link https://tools.ietf.org/html/rfc7592#section-2.2}
+ */
+function cleanseClient (client) {
+  delete client.headers;
+  delete client.statusCode;
+  delete client.statusMessage;
+  return client;
 }
 
 function handleResponse (resolve, reject) {
