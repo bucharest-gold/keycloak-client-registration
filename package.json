@@ -2,6 +2,7 @@
   "name": "keycloak-client-registration",
   "version": "0.1.0",
   "description": "Dynamic client registration for Keycloak",
+  "keyworkds": ["sso", "oauth", "openid", "keycloak", "login"],
   "repository": {
     "type": "git",
     "url": "https://github.com/bucharest-gold/keycloak-client-registration.git"
@@ -14,6 +15,7 @@
     "prepublish": "./node_modules/nsp/bin/nsp check",
     "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
   },
+  "files": ["index.js"],
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
   "license": "Apache-2.0",
   "devDependencies": {
