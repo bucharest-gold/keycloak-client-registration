@@ -32,7 +32,7 @@ const request = require('request'),
   DEFAULT_PROVIDER = 'default';
 
 /**
- * Creates a new keycloak client
+ * Creates a new keycloak client.
  * 
  * @param {object} options - Request options
  * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
