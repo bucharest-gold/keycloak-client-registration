@@ -4,16 +4,16 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
- 
+
 'use strict';
 
 /**
@@ -26,14 +26,12 @@ module.exports = exports = {
   update: update
 };
 
-const request = require('request'),
-  http = require('http'),
-  url = require('url'),
-  DEFAULT_PROVIDER = 'default';
+const request = require('request');
+const DEFAULT_PROVIDER = 'default';
 
 /**
  * Creates a new keycloak client.
- * 
+ *
  * @param {object} options - Request options
  * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
  * @param {string} options.accessToken - The [Initial access token]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
@@ -44,8 +42,8 @@ const request = require('request'),
  *   - 'openid-connect': Uses [OpenID Connect Dynamic Client registration]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527}
  * </br>
  *   - 'saml2-entity-descriptor': Creates clients using [SAML2 entity descriptors]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1537}
- *      as the client representation. 
- * 
+ *      as the client representation.
+ *
  * @param {object} [clientRepresentation] - An object representing the client
  * @param {string} [clientRepresentation.clientId] - The ID of the client to be created when using the 'default' provider
  * @returns {Promise} A promise that will resolve with the client object
@@ -62,7 +60,7 @@ function create (opts, clientRepresentation) {
 
 /**
  * Gets an existing keycloak client
- * 
+ *
  * @param {object} options - Request options
  * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
  * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
@@ -71,7 +69,7 @@ function create (opts, clientRepresentation) {
  *   - 'default': This is the default value and will use [Keycloak client representations]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507}
  * <br/>
  *   - 'openid-connect': Uses [OpenID Connect Dynamic Client registration]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527}
- * 
+ *
  * @param {string} clientId - The ID of the client to get
  * @returns {Promise} A promise that will resolve with the client object
  * @instance
@@ -86,7 +84,7 @@ function get (opts, clientId) {
 
 /**
  * Removes an existing keycloak client
- * 
+ *
  * @param {object} options - Request options
  * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
  * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
@@ -95,7 +93,7 @@ function get (opts, clientId) {
  *   - 'default': This is the default value and will use [Keycloak client representations]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507}
  * <br/>
  *   - 'openid-connect': Uses [OpenID Connect Dynamic Client registration]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527}
- * 
+ *
  * @param {string} clientId - The ID of the client to get
  * @returns {Promise} A promise that will resolve with the client object
  * @instance
@@ -110,9 +108,9 @@ function remove (opts, clientId) {
 
 /**
  * Update an existing keycloak client. The client object provided must at a minimum
- * contain a `clientId` property (or `client_id` in the case of OIDC provider). 
+ * contain a `clientId` property (or `client_id` in the case of OIDC provider).
  * All other attributes will be applied as an update.
- * 
+ *
  * @param {object} options - Request options
  * @param {string} options.endpoint - The API endpoint, e.g. http://localhost:8080/auth/realms/master/clients-registrations
  * @param {string} options.accessToken - The Initial access token @see {@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1473}
@@ -121,7 +119,7 @@ function remove (opts, clientId) {
  *   - 'default': This is the default value and will use [Keycloak client representations]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1507}
  * <br/>
  *   - 'openid-connect': Uses [OpenID Connect Dynamic Client registration]{@link http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html#d4e1527}
- * 
+ *
  * @param {object} client - The client to update
  * @param {string} client.clientId
  * @returns {Promise} A promise that will resolve with the client object

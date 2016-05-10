@@ -1,8 +1,8 @@
 'use strict';
 
-const test = require('tape'),
-  registration = require('../index.js'),
-  getToken = require('./bearer-token.js');
+const test = require('tape');
+const registration = require('../index.js');
+const getToken = require('./bearer-token.js');
 
 getToken().then((accessToken) => {
   const options = {
@@ -100,7 +100,6 @@ getToken().then((accessToken) => {
       t.end();
     });
   });
-
 }).catch((e) => {
   console.error('Are you sure a Keycloak server is running?');
   process.kill(process.pid);
