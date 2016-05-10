@@ -4,7 +4,7 @@
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
 This package provides a Node.js client for the Keycloak [client registration API][1].
-It is still a work in progress, and as yet unpublished.
+It is experimental and still a work in progress.
 
 N.B. This module uses ES6 language features, and as such depends on Node.js version 5.x
 or higher.
@@ -16,17 +16,15 @@ or higher.
       accessToken: getAccessTokenFromSomehwere()
     };
 
-    const create = require('keycloak-client-registration').create,
-          get = require('keycloak-client-registration').get;
+    const registration = require('keycloak-client-registration');
 
-    create(options).then((v) => {
-      t.equal(v.statusMessage, 'Created');
-      t.equal(v.statusCode, 201);
-      t.notEqual(v.clientId, undefined);
-      t.equal(typeof v.clientId, 'string');
-      t.end();
+    registration.create(options).then((v) => {
+      console.log(v.statusMessage); // => Created
+      console.log(v.statusCode); // => 201
+      console.log('Registration access token', v.registrationAccessToken);
+      console.log('Client ID', v.clientId);
     }).catch((e) => {
-      t.fail(e);
+      console.error('Error creating client', e);
     });
 
 ## API Documentation
