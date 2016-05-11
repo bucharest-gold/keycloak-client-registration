@@ -31,6 +31,7 @@
     "istanbul": "^0.4.3",
     "jsdoc": "^3.4.0",
     "jshint": "^2.9.1",
+    "keycloak-request-token": "^0.1.0",
     "nsp": "^2.3.0",
     "semistandard": "^7.0.5",
     "tap-spec": "^4.1.1",
