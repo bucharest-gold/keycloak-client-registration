@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tape test/*-test.js | tap-spec",
-    "lint": "jshint *.js test/*.js && semistandard",
+    "lint": "eslint .",
     "coverage": "./node_modules/.bin/istanbul cover tape -- test/*.js | tap-spec",
     "prepublish": "./node_modules/nsp/bin/nsp check",
     "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
@@ -27,10 +27,15 @@
   "author": "Lance Ball <lball@redhat.com> (http://lanceball.com)",
   "license": "Apache-2.0",
   "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-config-semistandard": "^7.0.0-beta.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.1.2",
+    "eslint-plugin-standard": "^2.0.0",
     "ink-docstrap": "^1.1.4",
     "istanbul": "^0.4.3",
     "jsdoc": "^3.4.0",
-    "jshint": "^2.9.1",
     "keycloak-request-token": "^0.1.0",
     "nsp": "^2.3.0",
     "semistandard": "^7.0.5",
