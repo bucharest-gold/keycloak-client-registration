@@ -81,7 +81,7 @@ Then just run the tests.
 
     make test
 
-To stop the server, run `./build/stop-server.sh`.
+To stop the server, run `./scripts/stop-server.sh`.
 
 
 ### Push
