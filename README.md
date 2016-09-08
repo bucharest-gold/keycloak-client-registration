@@ -1,13 +1,25 @@
 # Keycloak Client Registration
 
-[![Build Status](https://travis-ci.org/bucharest-gold/keycloak-client-registration.svg?branch=master)](https://travis-ci.org/bucharest-gold/keycloak-client-registration)
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
+[![Coverage Status](https://coveralls.io/repos/github/bucharest-gold/keycloak-client-registration/badge.svg?branch=master)](https://coveralls.io/github/bucharest-gold/keycloak-client-registration?branch=master)
+[![Build Status](https://travis-ci.org/bucharest-gold/keycloak-client-registration.svg?branch=master)](https://travis-ci.org/bucharest-gold/keycloak-client-registration) 
+[![Known Vulnerabilities](https://snyk.io/test/npm/keycloak-client-registration/badge.svg)](https://snyk.io/test/npm/keycloak-client-registration) 
+[![dependencies Status](https://david-dm.org/bucharest-gold/keycloak-client-registration/status.svg)](https://david-dm.org/bucharest-gold/keycloak-client-registration)
 
-This package provides a Node.js client for the Keycloak [client registration API][1].
-It is experimental and still a work in progress.
+[![NPM](https://nodei.co/npm/keycloak-client-registration.png)](https://npmjs.org/package/keycloak-client-registration)
 
-N.B. This module uses ES6 language features, and as such depends on Node.js version 5.x
-or higher.
+Node.js client for the Keycloak client registration API
+
+|                 | Project Info  |
+| --------------- | ------------- |
+| License:        | Apache-2.0  |
+| Build:          | make  |
+| Documentation:  | http://bucharest-gold.github.io/keycloak-client-registration/  |
+| Issue tracker:  | https://github.com/bucharest-gold/keycloak-client-registration/issues  |
+| Engines:        | Node.js 4.x, 5.x, 6.x
+
+## Installation
+
+`npm install keycloak-client-registration -S`
 
 ## Usage
 
@@ -27,26 +39,8 @@ or higher.
       console.error('Error creating client', e);
     });
 
-## API Documentation
-
-http://bucharest-gold.github.io/keycloak-client-registration/
-
-If you have the github rights to do it, you can publish the API documentation by running
-`./build/publish-docs.sh`. This script will generate the documentation, then clone this
-repository into a temporary directory, checkout the `gh-pages` branch and update it with
-the newly generated documentation
-
-## Development & Testing
-
-To run the tests, you'll need to have a keycloak server running. Just run
-`./build/start-server.sh`. If you don't already have a server downloaded,
-this script will download one for you, start it, initialize the admin user, and
-then restart.
-
-Then just run the tests.
-
-    make test
-
-To stop the server, run `./build/stop-server.sh`.
-
 [1]: http://keycloak.github.io/docs/userguide/keycloak-server/html/client-registration.html
+
+## Contributing
+
+Please read the [contributing guide](./CONTRIBUTING.md)

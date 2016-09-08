@@ -2,7 +2,7 @@
 
 PUBLISH_DIR="publish"
 
-. build/version.sh
+. scripts/version.sh
 echo $1
 git status -s | grep "^[MADRCU\? ][ MDMAU\?]"
 if [[ $? -eq 0 && "$1" != "-f" ]]; then
