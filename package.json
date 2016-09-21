@@ -19,7 +19,8 @@
     "lint": "eslint index.js test/*.js ",
     "coverage": "istanbul cover tape test/*.js | tap-spec",
     "prepublish": "./node_modules/nsp/bin/nsp check",
-    "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js"
+    "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js",
+    "dependencyCheck": "szero . --ci=true"
   },
   "files": [
     "index.js"
