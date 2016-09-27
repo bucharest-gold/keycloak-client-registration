@@ -1,5 +1,4 @@
 #!/bin/bash
 
-. scripts/version.sh
-
-${KEYCLOAK}/bin/jboss-cli.sh --connect command=:shutdown
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)

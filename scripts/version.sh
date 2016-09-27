@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export VERSION="1.9.4.Final"
+export VERSION="2.2.0.Final"
 export KEYCLOAK="keycloak-${VERSION}"
