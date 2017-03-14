@@ -50,7 +50,7 @@ const DEFAULT_PROVIDER = 'default';
  * @instance
  */
 function create (opts, clientRepresentation) {
-  let options = defaults(opts.accessToken, opts.endpoint, (opts.provider || DEFAULT_PROVIDER));
+  const options = defaults(opts.accessToken, opts.endpoint, (opts.provider || DEFAULT_PROVIDER));
   options.body = clientRepresentation || {};
   return new Promise((resolve, reject) => {
     request.post(options)
@@ -75,7 +75,7 @@ function create (opts, clientRepresentation) {
  * @instance
  */
 function get (opts, clientId) {
-  let options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, clientId);
+  const options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, clientId);
   return new Promise((resolve, reject) => {
     request.get(options)
       .on('response', handleResponse(resolve, reject));
@@ -99,7 +99,7 @@ function get (opts, clientId) {
  * @instance
  */
 function remove (opts, clientId) {
-  let options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, clientId);
+  const options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, clientId);
   return new Promise((resolve, reject) => {
     request.delete(options)
       .on('response', handleResponse(resolve, reject));
@@ -126,7 +126,7 @@ function remove (opts, clientId) {
  * @instance
  */
 function update (opts, client) {
-  let options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, client.clientId || client.client_id);
+  const options = defaults(opts.accessToken, opts.endpoint, opts.provider || DEFAULT_PROVIDER, client.clientId || client.client_id);
   options.body = (options.provider === DEFAULT_PROVIDER) ? client : cleanseClient(client);
   return new Promise((resolve, reject) => {
     request.put(options)

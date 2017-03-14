@@ -1,5 +1,4 @@
 ci: lint
-	npm run coverage
 	npm run docs
 
 test: lint

@@ -3,3 +3,5 @@ node_modules
 publish
 coverage
 docs
+.nyc_output
+npm-debug.log
