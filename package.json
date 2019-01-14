@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bucharest-gold/keycloak-client-registration.git"
+    "url": "https://github.com/keycloak/keycloak-client-registration.git"
   },
   "main": "index.js",
   "scripts": {
