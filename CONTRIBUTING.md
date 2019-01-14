@@ -4,7 +4,7 @@
 
 ### Did you find a bug ?
 
-Open a [new issue](https://github.com/bucharest-gold/keycloak-client-registration/issues/new)
+Open a [new issue](https://github.com/keycloak/keycloak-client-registration/issues/new)
 and be sure to include a title and clear description, as much relevant information
 as possible, and a code sample or a test case demonstrating the expected behavior
 that is not occurring.
@@ -15,13 +15,13 @@ Discussions can be done via github issues or IRC channel #brass-monkey.
 
 ### Fork
 
-Fork the project [on GitHub](https://github.com/bucharest-gold/keycloak-client-registration)
+Fork the project [on GitHub](https://github.com/keycloak/keycloak-client-registration)
 and check out your copy locally.
 
 ```
 git clone git@github.com:username/keycloak-client-registration.git
 cd keycloak-client-registration
-git remote add upstream https://github.com/bucharest-gold/keycloak-client-registration.git
+git remote add upstream https://github.com/keycloak/keycloak-client-registration.git
 ```
 
 ### Branch

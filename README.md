@@ -1,21 +1,6 @@
 # Keycloak Client Registration
 
-[![Coverage Status](https://coveralls.io/repos/github/bucharest-gold/keycloak-client-registration/badge.svg?branch=master)](https://coveralls.io/github/bucharest-gold/keycloak-client-registration?branch=master)
-[![Build Status](https://travis-ci.org/bucharest-gold/keycloak-client-registration.svg?branch=master)](https://travis-ci.org/bucharest-gold/keycloak-client-registration) 
-[![Known Vulnerabilities](https://snyk.io/test/npm/keycloak-client-registration/badge.svg)](https://snyk.io/test/npm/keycloak-client-registration) 
-[![dependencies Status](https://david-dm.org/bucharest-gold/keycloak-client-registration/status.svg)](https://david-dm.org/bucharest-gold/keycloak-client-registration)
-
-[![NPM](https://nodei.co/npm/keycloak-client-registration.png)](https://npmjs.org/package/keycloak-client-registration)
-
-Node.js client for the Keycloak client registration API
-
-|                 | Project Info  |
-| --------------- | ------------- |
-| License:        | Apache-2.0  |
-| Build:          | make  |
-| Documentation:  | http://bucharest-gold.github.io/keycloak-client-registration/  |
-| Issue tracker:  | https://github.com/bucharest-gold/keycloak-client-registration/issues  |
-| Engines:        | Node.js 4.x, 5.x, 6.x
+[![Build Status](https://travis-ci.org/keycloak/keycloak-client-registration.svg?branch=master)](https://travis-ci.org/keycloak/keycloak-client-registration) 
 
 ## Installation
 
